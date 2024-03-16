@@ -114,7 +114,13 @@ for (let btn of operatorBtns) {
             operator = btn.id;
             theStatus = "second";
         } else if (theStatus === "done") {
-            firstNum = result;
+            firstNum = result.toString();
+            /*
+            bug here:In the first version, I used firstNum = result here, which caused a tiny problem that after one calculation is done, and the result of the calculation
+            is used as the firstNum of next calculation, it will be regarded as a numerical value(because the result is calculated by the calculation function which returns a 
+            numerical value),but not a string as expected. This will cause the "delete" function not workingproperly for the logic of the delete operation is based on string
+            type, so by simply adding a "toString()" function here, the problem got fixed.
+            */
             theStatus = "second";
             operator = btn.id;
             result = "";
